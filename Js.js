@@ -72,6 +72,8 @@ document.getElementById("valider").addEventListener("click", () => {
         
         cardsPool.forEach(imgSrc => {
             const card = document.createElement("div");
+            let temp = imgSrc.split("/")[1].split(".")[0];
+            card.setAttribute("data-name", temp);
             card.classList.add("card");
             if (myChoice.value == 2) {
                 card.style.width = "200px";
@@ -110,6 +112,31 @@ document.getElementById("valider").addEventListener("click", () => {
                 this.classList.toggle("flip");
             });
         });
+            let cards = document.querySelectorAll(".card");
+            let flipped = 'false';
+            let temp;
+            cards.forEach(currentCard => {
+                currentCard.addEventListener("click", () => {
+                    
+                    if(flipped == 'false'){
+                        flipped = 'true';
+                        temp = currentCard;
+                    }else{
+                        
+                        if(temp.getAttribute("data-name") === currentCard.getAttribute("data-name") && currentCard !== temp){
+                            setTimeout(() =>{
+                                currentCard.classList.add("decorate");
+                                temp.classList.add("decorate");
+                            }, 500)
+                        }else{
+                           setTimeout(() => {
+                            currentCard.classList.toggle("flip");
+                            temp.classList.toggle("flip");
+                           }, 500);
+                        }
+                        flipped = 'false';
+                    }
+                })
+            })
     }
-    
 });

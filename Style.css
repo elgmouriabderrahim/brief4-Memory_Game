@@ -85,3 +85,6 @@ body {
     transform: rotateY(180deg);
 }
 
+.card.decorate {
+    box-shadow: 0 0 15px yellow;
+}
