@@ -1,6 +1,6 @@
 let myChoicebox = document.querySelector(".choicebox");
 let mycards = document.querySelector(".cards");
-
+thebody = document.querySelector("body")
 const cardImages = [
     'images/card1.png',
     'images/card2.png',
@@ -41,7 +41,6 @@ document.getElementById("valider").addEventListener("click", () => {
     if (myChoice){
         mycards.style.display = "grid";
         myChoicebox.style.display = "none";
-        mycards.style.display = "grid";
     
         mycards.innerHTML = '';
         mycards.className = "cards";
@@ -109,15 +108,20 @@ document.getElementById("valider").addEventListener("click", () => {
             mycards.appendChild(card);
             
             card.addEventListener("click", function () {
-                this.classList.toggle("flip");
+                if(!(this.classList.contains("decorate"))){
+                    this.classList.toggle("flip");
+                }
             });
         });
             let cards = document.querySelectorAll(".card");
             let flipped = 'false';
             let temp;
+            let count = 0;
+            let nbrflipped = 0;
+            let bestScore;
             cards.forEach(currentCard => {
                 currentCard.addEventListener("click", () => {
-                    
+                    count++;
                     if(flipped == 'false'){
                         flipped = 'true';
                         temp = currentCard;
@@ -128,6 +132,7 @@ document.getElementById("valider").addEventListener("click", () => {
                                 currentCard.classList.add("decorate");
                                 temp.classList.add("decorate");
                             }, 500)
+                            nbrflipped = nbrflipped + 2;
                         }else{
                            setTimeout(() => {
                             currentCard.classList.toggle("flip");
@@ -136,7 +141,20 @@ document.getElementById("valider").addEventListener("click", () => {
                         }
                         flipped = 'false';
                     }
+                    if(nbrflipped == totalCards){
+                        mycards.style.display = "none";
+                        let finalMsg = document.createElement("div");
+                        finalMsg.innerText = `Congratulations! You won with ${count} attempts`;
+                        finalMsg.classList.add("congratestyle");
+                        thebody.append(finalMsg);
+
+                        bestScore = bestScore ? Math.min(bestScore, count) : count;
+
+                        let bestscorediv = document.createElement("p");
+                        bestscorediv.innerText = `The best score so far: ${bestScore}`;
+                        finalMsg.append(bestscorediv);
+                    }
                 })
             })
-    }
+        }
 });
