@@ -94,10 +94,28 @@ body {
     font-weight: bold;
     text-align: center;
     animation: popup 0.5s ease;
+    background-color: aliceblue;
+    border: 1px solid black;
+    padding: 20px;
 }
 
 @keyframes popup {
-    0% { transform: scale(0); opacity: 0; }
-    60% { transform: scale(1.2); opacity: 1; }
-    100% { transform: scale(1); }
+    0% {
+        transform: scale(0); opacity: 0;
+    }
+    60% {
+        transform: scale(1.2); opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+.button-decoraation {
+    background-color: green;
+    border-radius: 10px;
+    padding: 5px 40px 5px;
+    margin: 5px 40px 5px;
+}
+.button-decoraation:hover {
+    background-color: rgba(8, 174, 8, 0.852);
 }
