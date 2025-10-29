@@ -37,7 +37,8 @@ body {
     border-radius: 15px;
     box-shadow: 3px 3px 5px black;
     border: 1px black solid;
-}
+    display: none;
+    }
 .matrix2x2 {
     grid-template-columns: repeat(2, minmax(100px, 1fr));
 }
@@ -52,17 +53,35 @@ body {
 }
 .card {
     border: 1px solid black;
-    background-color: white;
+    background-color: black;
     border-radius: 5px;
     box-shadow: 3px 3px 5px black;
     overflow: hidden;
-    display: none;
+    cursor: pointer;
+    position: relative;
+    transition: transform 0.5s;
 }
-.card > img {
+
+.back, .front {
+    position: absolute;
     width: 100%;
     height: 100%;
     scale: 1.02;
+    backface-visibility: hidden;
+    transition: transform 0.5s;
 }
-.cards {
-    display: none;
+.card .front {
+    transform: rotateY(180deg);
 }
+
+.card.flip {
+    transform: rotateY(180deg);
+    box-shadow: -3px 3px 5px black;
+}
+.card.flip .front {
+    transform: rotateY(0deg);
+}
+.card.flip .back {
+    transform: rotateY(180deg);
+}
+
