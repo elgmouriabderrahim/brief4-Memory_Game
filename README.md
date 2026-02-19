@@ -28,7 +28,7 @@ Memory Game is an interactive web mini-game designed to help users develop their
 
 1. Clone the repository:
    ```bash
-   git clone <https://github.com/elgmouriabderrahim/brief4-Memory_Game.git>
+   git clone https://github.com/elgmouriabderrahim/brief4-Memory_Game.git
 
 ## Screenshots
 
